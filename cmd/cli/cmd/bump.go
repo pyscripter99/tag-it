@@ -30,6 +30,7 @@ var bumpCmd = &cobra.Command{
 
 		if len(args) < 2 && !git {
 			fmt.Println("Please specify version or use --git")
+			os.Exit(1)
 		}
 
 		bumpFactors := []string{"patch", "minor", "major"}
