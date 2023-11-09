@@ -4,7 +4,10 @@ import (
 	"fmt"
 	"os"
 	"slices"
+	"tag-it/internal/tagger"
 
+	"github.com/Masterminds/semver"
+	"github.com/go-git/go-git/v5"
 	"github.com/spf13/cobra"
 )
 
@@ -13,7 +16,7 @@ var bumpCmd = &cobra.Command{
 	Short: "Bump the version by specified amount",
 	Long:  "Bump the version by specified amount",
 	Run: func(cmd *cobra.Command, args []string) {
-		git, err := cmd.Flags().GetBool("git")
+		useGit, err := cmd.Flags().GetBool("git")
 		if err != nil {
 			fmt.Println(err)
 			os.Exit(1)
@@ -28,7 +31,7 @@ var bumpCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		if len(args) < 2 && !git {
+		if len(args) < 2 && !useGit {
 			fmt.Println("Please specify version or use --git")
 			os.Exit(1)
 		}
@@ -38,6 +41,38 @@ var bumpCmd = &cobra.Command{
 			fmt.Println("Invalid bump factor, please use: patch, minor or major")
 			os.Exit(1)
 		}
+
+		var ver *semver.Version
+
+		if useGit {
+			repositoryPath, err := cmd.Flags().GetString("repository")
+			if err != nil {
+				fmt.Println(err)
+				os.Exit(1)
+			}
+
+			repo, err := git.PlainOpen(repositoryPath)
+			if err != nil {
+				fmt.Println(err)
+				os.Exit(1)
+			}
+
+			ver, err = tagger.LoadGitLatestVersion(repo)
+			if err != nil {
+				fmt.Println(err)
+				os.Exit(1)
+			}
+		}
+
+		if !useGit {
+			ver, err = semver.NewVersion(args[1])
+			if err != nil {
+				fmt.Println(err)
+				os.Exit(1)
+			}
+		}
+
+		fmt.Println(ver)
 	},
 }
 
