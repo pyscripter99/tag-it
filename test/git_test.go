@@ -16,8 +16,8 @@ func TestLoadLatestGitVersion(t *testing.T) {
 		initalTags []string
 		want       *semver.Version
 	}{
-		{[]string{"v0.0.1", "v0.1.5", "v2.0.1"}, semver.MustParse("v2.0.1")},
-		{[]string{"v0.0.1-alpha", "v0.1.5-beta", "v1.28.6"}, semver.MustParse("v1.28.6")},
+		{[]string{"v0.0.1", "0.1.5", "v2.0.1"}, semver.MustParse("v2.0.1")},
+		{[]string{"v0.0.1-alpha", "v0.1.5-beta", "1.28.6"}, semver.MustParse("v1.28.6")},
 	}
 
 	for _, tt := range tests {
