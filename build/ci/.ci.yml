@@ -18,6 +18,6 @@ steps:
         image: *golang_image
         group: test
         commands:
-            - go build ./cmd/ci/
+            - go build ./cmd/ci
             - go build ./cmd/cli
             - go test ./test
