@@ -17,7 +17,7 @@ type Semver struct {
 }
 
 func (s Semver) String() string {
-	return fmt.Sprintf("%d.%d.%d", s.Patch, s.Minor, s.Major)
+	return fmt.Sprintf("%d.%d.%d", s.Major, s.Minor, s.Patch)
 }
 
 func Bump(ver Semver, bump SemverBump) Semver {
