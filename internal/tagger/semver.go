@@ -1,6 +1,12 @@
 package tagger
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+	"regexp"
+	"strconv"
+	"strings"
+)
 
 type SemverBump int
 
@@ -18,6 +24,45 @@ type Semver struct {
 
 func (s Semver) String() string {
 	return fmt.Sprintf("%d.%d.%d", s.Major, s.Minor, s.Patch)
+}
+
+func (s Semver) ParseString(verString string) (Semver, error) {
+	var ver Semver
+
+	reg, err := regexp.Compile(`^\d*\.\d*\.\d*$`)
+	if err != nil {
+		return ver, err
+	}
+
+	if !reg.MatchString(verString) {
+		return ver, fmt.Errorf("%s not a valid/supported semver version", verString)
+	}
+
+	segments := strings.Split(verString, ".")
+
+	if len(segments) != 3 {
+		return ver, errors.New("length of segments not equal to 3")
+	}
+
+	segment64, err := strconv.ParseUint(segments[0], 10, 32)
+	if err != nil {
+		return ver, err
+	}
+	ver.Major = uint32(segment64)
+
+	segment64, err = strconv.ParseUint(segments[1], 10, 32)
+	if err != nil {
+		return ver, err
+	}
+	ver.Minor = uint32(segment64)
+
+	segment64, err = strconv.ParseUint(segments[2], 10, 32)
+	if err != nil {
+		return ver, err
+	}
+	ver.Patch = uint32(segment64)
+
+	return ver, nil
 }
 
 func Bump(ver Semver, bump SemverBump) Semver {
