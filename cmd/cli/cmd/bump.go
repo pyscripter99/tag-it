@@ -72,7 +72,20 @@ var bumpCmd = &cobra.Command{
 			}
 		}
 
-		fmt.Println(ver)
+		var bump tagger.SemverBump
+
+		switch args[0] {
+		case "patch":
+			bump = tagger.Patch
+		case "minor":
+			bump = tagger.Minor
+		case "major":
+			bump = tagger.Major
+		}
+
+		absVer := *ver
+		absVer = tagger.BumpVersion(absVer, bump)
+		ver = &absVer
 	},
 }
 
