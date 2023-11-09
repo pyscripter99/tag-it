@@ -43,7 +43,7 @@ func TestParse(t *testing.T) {
 	for _, tt := range tests {
 		testname := fmt.Sprintf("Parse: str=%s, want=%s", tt.str, tt.want)
 		t.Run(testname, func(t *testing.T) {
-			result, err := tagger.Semver{}.ParseString(tt.str)
+			result, err := tagger.ParseSemverString(tt.str)
 			if err != nil {
 				t.Fatal(err)
 			}

@@ -20,16 +20,19 @@ type Semver struct {
 	Patch uint32
 	Minor uint32
 	Major uint32
+
+	// Config
+	VPrefix bool
 }
 
 func (s Semver) String() string {
 	return fmt.Sprintf("%d.%d.%d", s.Major, s.Minor, s.Patch)
 }
 
-func (s Semver) ParseString(verString string) (Semver, error) {
+func ParseSemverString(verString string) (Semver, error) {
 	var ver Semver
 
-	reg, err := regexp.Compile(`^\d*\.\d*\.\d*$`)
+	reg, err := regexp.Compile(`^v?\d*\.\d*\.\d*$`)
 	if err != nil {
 		return ver, err
 	}
@@ -37,6 +40,10 @@ func (s Semver) ParseString(verString string) (Semver, error) {
 	if !reg.MatchString(verString) {
 		return ver, fmt.Errorf("%s not a valid/supported semver version", verString)
 	}
+
+	ver.VPrefix = strings.HasPrefix(verString, "v")
+
+	verString = strings.TrimPrefix(verString, "v")
 
 	segments := strings.Split(verString, ".")
 
