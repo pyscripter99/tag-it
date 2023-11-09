@@ -47,4 +47,5 @@ func init() {
 	bumpCmd.Flags().StringP("push", "p", "", "Create git commit and push to specified remote")
 	bumpCmd.Flags().BoolP("commit", "c", false, "Specifies if the new tag should be committed to the current git repository.\n\tNote: ignored if push flag is active")
 	bumpCmd.Flags().String("commit-message", "Bump version to '$version$'", "String to use in commit message.\n\tFormat values: $version$ - Bumped version, $old-version$ - Current version\n\t")
+	bumpCmd.Flags().StringP("repository", "r", ".", "Folder containing .git/")
 }
