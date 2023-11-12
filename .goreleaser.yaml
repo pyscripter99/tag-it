@@ -27,13 +27,13 @@ upx:
     - enabled: true
       compress: "7"
 
-kos:
-    - build: tag-it-ci
-      id: tag-it-ci
-      repository: pyscripter99/tag-it
-    - build: tag-it-cli
-      id: tag-it-cli
-      repository: pyscripter99/tag-it
+# kos:
+#     - build: tag-it-ci
+#       id: tag-it-ci
+#       repository: pyscripter99/tag-it
+#     - build: tag-it-cli
+#       id: tag-it-cli
+#       repository: pyscripter99/tag-it
 
 archives:
     - id: ci
