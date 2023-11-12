@@ -1,0 +1,16 @@
+when:
+
+clone:
+    git:
+        image: woodpeckerci/plugin-git
+        settings:
+            tags: true
+
+pipeline:
+    release:
+        image: goreleaser/goreleaser
+        commands:
+            - goreleaser release
+        secrets: [gitea_token]
+        when:
+            event: tag
