@@ -20,4 +20,4 @@ steps:
         commands:
             - go build ./cmd/ci
             - go build ./cmd/cli
-            - go test ./test
+            - go test ./test -v
