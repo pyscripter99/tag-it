@@ -27,6 +27,10 @@ upx:
     - enabled: true
       compress: "7"
 
+gitea_urls:
+    download: https://gitea.retzer.xyz
+    api: https://gitea.retzer.xyz/api/v1
+
 # kos:
 #     - build: tag-it-ci
 #       id: tag-it-ci
