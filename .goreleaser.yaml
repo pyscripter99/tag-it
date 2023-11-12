@@ -22,7 +22,6 @@ builds:
           - linux
           - windows
           - darwin
-    - id: tag-it-ci
 
 upx:
     - enabled: true
