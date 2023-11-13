@@ -9,7 +9,10 @@ pipeline:
     release:
         image: goreleaser/goreleaser
         commands:
-            - ko login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+            - wget https://github.com/ko-build/ko/releases/download/v0.15.0/ko_0.15.0_Linux_arm64.tar.gz
+            - tar -xzf ko_0.15.0_Linux_arm64.tar.gz ko
+            - chmod +x ./ko
+            - ./ko login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
             - goreleaser release
         secrets: [gitea_token, docker_username, docker_password]
         when:
