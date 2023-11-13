@@ -31,14 +31,6 @@ gitea_urls:
     download: https://gitea.retzer.xyz
     api: https://gitea.retzer.xyz/api/v1
 
-kos:
-    - build: tag-it-ci
-      id: tag-it-ci
-      repository: pyscripter99/tag-it
-    - build: tag-it-cli
-      id: tag-it-cli
-      repository: pyscripter99/tag-it
-
 archives:
     - id: ci
       format: tar.gz
