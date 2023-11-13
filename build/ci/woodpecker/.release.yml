@@ -13,6 +13,7 @@ pipeline:
             - tar -xzf ko_0.15.0_Linux_arm64.tar.gz ko
             - chmod +x ./ko
             - ./ko login registry-1.docker.io -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+            - rm ko ko_0.15.0_Linux_arm64.tar.gz
             - goreleaser release
         secrets: [gitea_token, docker_username, docker_password]
         when:
