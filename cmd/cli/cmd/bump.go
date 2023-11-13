@@ -170,6 +170,8 @@ var bumpCmd = &cobra.Command{
 				os.Exit(1)
 			}
 		}
+
+		fmt.Println(verString)
 	},
 }
 
