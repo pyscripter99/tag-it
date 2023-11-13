@@ -9,7 +9,8 @@ pipeline:
     release:
         image: goreleaser/goreleaser
         commands:
+            - ko login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
             - goreleaser release
-        secrets: [gitea_token]
+        secrets: [gitea_token, docker_username, docker_password]
         when:
             event: tag
