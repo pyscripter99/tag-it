@@ -67,7 +67,7 @@ aurs:
       maintainers:
         - "pyscripter99 <ryder@retzlaff.family>"
       license: AGPL-3.0
-      private_key: {{ .Env.AUR_KEY }}
+      private_key: '{{ .Env.AUR_KEY }}'
       git_url: 'ssh://aur@aur.archlinux.org/tag-it-bin.git'
       
 
