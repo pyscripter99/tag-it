@@ -62,7 +62,8 @@ archives:
             format: zip
 
 aurs:
-    - homepage: "https://gitea.retzer.xyz/pyscripter99/tag-it"
+    - ids: [tag-it-cli]
+      homepage: "https://gitea.retzer.xyz/pyscripter99/tag-it"
       description: Tag-It is a CI and CLI tool to bump semver versions
       maintainers:
         - "pyscripter99 <ryder@retzlaff.family>"
