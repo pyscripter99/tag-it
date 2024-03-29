@@ -5,7 +5,7 @@ when:
     - event: push
 
 variables:
-    - &golang_image "docker.io/golang:1.21.3"
+    - &golang_image "docker.io/golang:1.22.1"
 
 steps:
     vendor:
