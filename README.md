@@ -10,5 +10,4 @@ Tag-It's goal is to provide Semver bumping and utilities to any platform, weathe
 
 ## Badges
 
-[![status-badge](https://cloudpecker.retzer.xyz/api/badges/2/status.svg)](https://cloudpecker.retzer.xyz/repos/2)
 ![CI Workflow](https://github.com/pyscripter99/tag-it/actions/workflows/ci.yml/badge.svg)
