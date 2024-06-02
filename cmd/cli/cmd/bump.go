@@ -113,6 +113,9 @@ var bumpCmd = &cobra.Command{
 			bump = tagger.Minor
 		case "major":
 			bump = tagger.Major
+		default:
+			fmt.Println("Invalid bump factor, please use: patch, minor or major")
+			os.Exit(1)
 		}
 
 		absVer := *ver
@@ -122,8 +125,7 @@ var bumpCmd = &cobra.Command{
 		var verString string
 		if usePrefix {
 			verString = strings.Join([]string{"v", ver.String()}, "")
-		}
-		if !usePrefix {
+		} else {
 			verString = ver.String()
 		}
 
